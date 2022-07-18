@@ -571,6 +571,7 @@ Ep 914, watched on 11/30/2021 at 20:36 Remove
 Ep 913, watched on 11/30/2021 at 18:19 Remove
 Ep 836, watched on 06/26/2021 at 16:46 Remove
 Ep 835, watched on 06/26/2021 at 16:15 Remove`
+// main(data);
 function main(data) {
     console.log("Loading")
     document.querySelector('#search').value = data
@@ -581,12 +582,20 @@ watchedEP = watchedEP.map(function(d) {
     d = parseInt(d);
   return d;
 });
+// var watchedDateTime = data.match(/(?<=on\s)(.+)\sat\s(\d\d:\d\d)(?=\sRemove)/g)
+var watchedDate = data.match(/(?<=on\s)(.+)\sat\s(\d\d:\d\d)(?=\sRemove)/g).map(function(d) {
+  return d.split(" at ")[0];
+});
+var watchedTime = data.match(/(?<=on\s)(.+)\sat\s(\d\d:\d\d)(?=\sRemove)/g).map(function(d) {
+    return d.split(" at ")[1];
+  });
 var EPwatched = watchedEP.length
 var watched = document.getElementById("watched").innerHTML
 document.getElementById('watchedTitle').textContent = `Episode(s) Watched (${EPwatched})`
 document.getElementById("watchedList").innerHTML = ""
 for (var i = 0; i<watchedEP.length;i++) {
-    document.getElementById("watchedList").innerHTML += `<span class="btn">${watchedEP[i]}</span>`
+    document.getElementById("watchedList").innerHTML += `<span class="btn" data-bs-toggle="tooltip" data-bs-placement="top" title="${watchedTime[i]} ${watchedDate[i]}">
+    ${watchedEP[i]}</span>`
 }
 const latestEP = Math.max(...watchedEP)
 var EPunwatched = Math.max(...watchedEP) - EPwatched
@@ -599,3 +608,37 @@ for (var i = 1; i<latestEP;i++) {
 }
 console.log("Done")
 }
+
+
+
+
+// function drawChart() {
+//     var dataTable = new google.visualization.DataTable();
+//     dataTable.addColumn({ type: 'date', id: 'Date' });
+//     dataTable.addColumn({ type: 'number', id: 'Won/Loss' });
+//     dataTable.addRows([
+//        [ new Date(2012, 3, 13), 37032 ],
+//        [ new Date(2012, 3, 14), 38024 ],
+//        [ new Date(2012, 3, 15), 38024 ],
+//        [ new Date(2012, 3, 16), 38108 ],
+//        [ new Date(2012, 3, 17), 38229 ],
+//        // Many rows omitted for brevity.
+//        [ new Date(2013, 9, 4), 38177 ],
+//        [ new Date(2013, 9, 5), 38705 ],
+//        [ new Date(2013, 9, 12), 38210 ],
+//        [ new Date(2013, 9, 13), 38029 ],
+//        [ new Date(2013, 9, 19), 38823 ],
+//        [ new Date(2013, 9, 23), 38345 ],
+//        [ new Date(2013, 9, 24), 38436 ],
+//        [ new Date(2022, 9, 30), 38447 ]
+//      ]);
+
+//     var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
+
+//     var options = {
+//       title: "Red Sox Attendance",
+//       height: 1000,
+//     };
+
+//     chart.draw(dataTable, options);
+// }
