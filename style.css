@@ -1,0 +1,54 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: top;
+      -ms-flex-align: top;
+          align-items: top;
+  text-align: center;
+}
+
+.row a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.row #watched {
+  background: rgba(144, 238, 144, 0.7);
+  max-width: 100vw;
+}
+
+.row #watched span {
+  color: green;
+}
+
+.row #watched span:hover {
+  background: rgba(255, 255, 0, 0.7);
+}
+
+.row #unwatched {
+  background: rgba(250, 128, 114, 0.7);
+}
+
+.row #unwatched span {
+  color: red;
+}
+
+.row #unwatched span:hover {
+  background: rgba(255, 255, 0, 0.7);
+}
+/*# sourceMappingURL=style.css.map */
