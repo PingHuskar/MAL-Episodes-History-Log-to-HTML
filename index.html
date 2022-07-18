@@ -12,15 +12,17 @@
 </head>
 <body>
     <div class="input-group">
-        <input type="text" id="search" class="form-control" onchange="main();" placeholder="" autofocus autocomplete="true">
+        <input type="text" id="search" class="form-control" onchange="main(this.value);" placeholder="" autofocus autocomplete="true">
     </div>
     <div class="row">
         <h1 id="animeName"></h1>
         <div class="col-6" id="watched">
             <h2 id="watchedTitle">Episodes Watched</h2>
+            <div id="watchedList"></div>
         </div>
         <div class="col-6" id="unwatched">
             <h2 id="unwatchedTitle">Episodes Unwatched</h2>
+            <div id="unwatchedList"></div>
         </div>
     </div>
         <script src="script.js"></script>

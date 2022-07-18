@@ -571,27 +571,31 @@ Ep 914, watched on 11/30/2021 at 20:36 Remove
 Ep 913, watched on 11/30/2021 at 18:19 Remove
 Ep 836, watched on 06/26/2021 at 16:46 Remove
 Ep 835, watched on 06/26/2021 at 16:15 Remove`
-document.querySelector('#search').value = data
+function main(data) {
+    console.log("Loading")
+    document.querySelector('#search').value = data
 // document.getElementById('animeName').textContent = data.match(/^.+?(?=\sEpisode\sDetails)/)
 document.getElementById('animeName').innerHTML = `<a href="https://myanimelist.net/search/all?q=${data.match(/^.+?(?=\sEpisode\sDetails)/)}&cat=all" target="_blank">${data.match(/^.+?(?=\sEpisode\sDetails)/)}</a>`
 var watchedEP = data.match(/(?!Ep\s)\d+(?=,)/g)
 watchedEP = watchedEP.map(function(d) {
     d = parseInt(d);
   return d;
-}); 
-// console.log(watchedEP)
-// console.log(watchedEP.length)
+});
 var EPwatched = watchedEP.length
 var watched = document.getElementById("watched").innerHTML
-document.getElementById('watchedTitle').textContent += ` (${EPwatched})`
+document.getElementById('watchedTitle').textContent = `Episode(s) Watched (${EPwatched})`
+document.getElementById("watchedList").innerHTML = ""
 for (var i = 0; i<watchedEP.length;i++) {
-    document.getElementById("watched").innerHTML += `<span class="btn">${watchedEP[i]}</span>`
+    document.getElementById("watchedList").innerHTML += `<span class="btn">${watchedEP[i]}</span>`
 }
 const latestEP = Math.max(...watchedEP)
 var EPunwatched = Math.max(...watchedEP) - EPwatched
-document.getElementById('unwatchedTitle').textContent += ` (${EPunwatched})`
+document.getElementById('unwatchedTitle').textContent = `Episode(s) Unwatched (${EPunwatched})`
+document.getElementById("unwatchedList").innerHTML = ""
 for (var i = 1; i<latestEP;i++) {
     if (!watchedEP.includes(i)) {
-        document.getElementById("unwatched").innerHTML += `<span class="btn">${i}</span>`
+        document.getElementById("unwatchedList").innerHTML += `<span class="btn">${i}</span>`
     }
+}
+console.log("Done")
 }
